@@ -1,13 +1,18 @@
-import { Controller, Get } from '@nestjs/common';
-import { AppService } from './app.service';
+import { Controller, Get, Param } from '@nestjs/common';
+import { UserInterface } from '../interfaces/user.interface';
+import { DataService } from '../services/data.service';
 
 @Controller()
 export class AppController {
-  constructor(private readonly appService: AppService) {}
+  constructor(private readonly dataService: DataService) {}
 
+  @Get('users')
+  getAllUsers(): UserInterface[] {
+    return this.dataService.getUsers();
+  }
 
-  @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Get('users/:id')
+  getUser(@Param('id') id: string): UserInterface {
+    return this.dataService.getUser(id);
   }
 }
