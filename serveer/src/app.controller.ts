@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, HttpException, HttpStatus, Param } from '@nestjs/common';
 import { UserInterface } from '../interfaces/user.interface';
 import { DataService } from '../services/data.service';
 
@@ -13,6 +13,17 @@ export class AppController {
 
   @Get('users/:id')
   getUser(@Param('id') id: string): UserInterface {
-    return this.dataService.getUser(id);
+    const user = this.dataService.getUser(id);
+    if (user) {
+      return user;
+    } else {
+      throw new HttpException(
+        {
+          status: HttpStatus.NOT_ACCEPTABLE,
+          error: 'There is no user with such an Id',
+        },
+        HttpStatus.NOT_ACCEPTABLE,
+      );
+    }
   }
 }

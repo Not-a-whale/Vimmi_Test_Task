@@ -9,12 +9,14 @@
     </tr>
     </thead>
     <tbody>
-    <tr  v-for="(item) in items" :key="item.id">
-      <th scope="row">{{item.id}}</th>
-      <td>{{item.name}}</td>
-      <td>{{item.email}}</td>
-      <td>{{item.city}}</td>
-    </tr>
+      <tr  v-for="(item) in items"
+           :key="item.id"
+           @click="navigateToUser(item.id)">
+        <th scope="row">{{item.id}}</th>
+        <td>{{item.name}}</td>
+        <td>{{item.email}}</td>
+        <td>{{item.city}}</td>
+      </tr>
     </tbody>
   </table>
 </template>
@@ -23,6 +25,11 @@
 export default {
   name: 'UserComponent',
   props: ['items'],
+  methods: {
+    navigateToUser(id) {
+      this.$router.push(`/users/${id}`);
+    },
+  },
 };
 </script>
 

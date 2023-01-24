@@ -1,5 +1,9 @@
 # vimmi_test_task
 
+Thank you for your interest in my CV. I am presenting you this small project as a token of appreciation and as a preface to our fruitful cooperation.
+Nikita Kornienko. 
+Full-stack developer.
+
 ## Project setup
 ```
 npm install
